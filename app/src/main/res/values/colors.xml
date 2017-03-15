@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Colours provided by http://paletton.com/#uid=53U0u0kllllvghYqijEgon1broI -->
+
+    <color name="colorPrimaryDark">#1C501C</color>
+    <color name="colorPrimary">#3EB93E</color>
+    <color name="spotifyGreen">#6AE368</color>
+    <color name="colorAccent">#6AE368</color>
+</resources>
