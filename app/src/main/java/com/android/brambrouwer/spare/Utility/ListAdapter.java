@@ -21,7 +21,7 @@ public class ListAdapter extends BaseAdapter{
     private com.android.brambrouwer.spare.allChampActivity allChampActivity;
 
     //Constructor
-    ListAdapter(allChampActivity allChampActivity) {
+    public ListAdapter(allChampActivity allChampActivity) {
         this.allChampActivity = allChampActivity;
     }
 
