@@ -1,11 +1,15 @@
 package com.android.brambrouwer.spare;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
+import android.graphics.Color;
+import android.preference.PreferenceManager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
+import android.widget.RelativeLayout;
 
 import com.android.brambrouwer.spare.Utility.ListAdapter;
 import com.android.brambrouwer.spare.Utility.LolApiController;
@@ -26,11 +30,13 @@ public class allChampActivity extends AppCompatActivity {
     public ArrayList<Champion> champs;
     public ListAdapter adapter;
     public ListView list;
-
+    public String preferredListtheme;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_all_champ);
+
+        preferredListtheme = readPrefs();
 
         //Init champlist, adapter and clicklistener
         champs = new ArrayList<>();
@@ -110,5 +116,22 @@ public class allChampActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+    }
+
+    //Get current value of the theme pref & set backroung accordingly
+    public String readPrefs(){
+
+        //Get current value of the shared preference with key pref_theme (key declared in settingsfragment)
+        SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(this);
+        return sharedPref.getString(SettingsFragment.KEY_PREF_THEME, "");
+
+
+        /* RelativeLayout root = (RelativeLayout) findViewById(R.id.activity_champ_data);
+
+        if(prefTheme.equals("dark")){
+            root.setBackground(getDrawable(R.drawable.background_texture7));
+        }else{
+            root.setBackgroundColor(Color.parseColor("#FFFFFF"));
+        }*/
     }
 }
