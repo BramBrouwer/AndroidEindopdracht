@@ -1,11 +1,14 @@
 package com.android.brambrouwer.spare.Utility;
 
 import android.content.Context;
+import android.graphics.Color;
+import android.graphics.drawable.Drawable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.android.brambrouwer.spare.R;
@@ -33,6 +36,7 @@ public class ListAdapter extends BaseAdapter{
     private static class ViewHolderItem {
         TextView name;
         TextView title;
+        RelativeLayout wrapper;
     }
 
     //Create a view for each listitem
@@ -48,6 +52,7 @@ public class ListAdapter extends BaseAdapter{
             //Reference views in listitem layout using their ID
             holder.name = (TextView) convertView.findViewById(R.id.c_name);
             holder.title = (TextView) convertView.findViewById(R.id.c_title);
+            holder.wrapper = (RelativeLayout) convertView.findViewById(R.id.listItemWrapper);
             convertView.setTag(holder);
         } else {
             holder = (ViewHolderItem) convertView.getTag();
@@ -56,12 +61,20 @@ public class ListAdapter extends BaseAdapter{
         //Get values we want to display from list
         String firstLineStr = this.allChampActivity.champs.get(position).name;
         String secondLineStr = this.allChampActivity.champs.get(position).title;
-
+        String preferredTheme = this.allChampActivity.preferredListtheme;
 
         //Set values
         holder.name.setText(firstLineStr);
         holder.title.setText(secondLineStr);
 
+        if(preferredTheme.equals("dark"))
+        {
+            holder.wrapper.setBackgroundColor(Color.parseColor("#000000"));
+
+        }else{
+            holder.wrapper.setBackgroundColor(Color.parseColor("#FFFFFF"));
+
+        }
 
         return convertView;
     }
