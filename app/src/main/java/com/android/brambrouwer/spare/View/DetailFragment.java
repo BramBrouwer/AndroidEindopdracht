@@ -73,7 +73,7 @@ public class DetailFragment extends Fragment {
     public void initView(Champion c) {
         readPrefs();                                                //Check preferred theme
         setValues(c);                                               //Update textviews/bars
-        //getChampIcon();
+        getChampIcon();
     }
 
     /*

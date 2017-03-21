@@ -64,6 +64,9 @@ public class MasterFragment extends Fragment {
         getAllChamps();
     }
 
+
+
+
     /*
     Checks if the host activity has implemented the Onmasteritemselected interface, if it has reference it in the onMasteritemSelectedListener
      */
