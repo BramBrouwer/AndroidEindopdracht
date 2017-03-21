@@ -1,5 +1,6 @@
 package com.android.brambrouwer.spare.View;
 
+import android.content.pm.ActivityInfo;
 import android.content.res.Configuration;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -25,8 +26,10 @@ public class HostActivity extends AppCompatActivity implements MasterFragment.On
 
         if(screenType.equals("normal")){
             normalScreen();
+            setRequestedOrientation (ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);     //  Fixed Portrait orientation
         }else if(screenType.equals("large")){
             largeScreen();
+            setRequestedOrientation (ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);     //  Fixed Portrait orientation
         }
     }
 
