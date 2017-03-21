@@ -37,6 +37,11 @@ public class LolHomeActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
+    public void openFragments(View view){
+        Intent intent = new Intent(LolHomeActivity.this, fragmentActivity.class);
+        startActivity(intent);
+    }
+
     //Get current value of the theme pref & set backroung accordingly
     public void readPrefs(){
 

@@ -10,7 +10,8 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="com.android.brambrouwer.spare.LolHomeActivity"
     android:background="@drawable/background_texture7"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:weightSum="1">
 
     <Button
         android:id="@+id/bAllChamps"
@@ -33,40 +34,25 @@
         android:layout_marginTop="25dp"
         android:layout_marginBottom="25dp"/>
 
-    <LinearLayout
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="horizontal">
 
     <Button
-        android:id="@+id/bInfo"
-        style="?android:attr/borderlessButtonStyle"
-        android:layout_width="wrap_content"
-        android:layout_height="match_parent"
-        android:drawableTop="@drawable/information_icon_resized"
-        android:onClick="openInfo"
-        android:text="Information"
-        android:textSize="16sp"
-        android:textStyle="bold"
-        android:textColor="@android:color/darker_gray"
-        />
+        android:text="Fragments"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/button"
+        android:onClick="openFragments"/>
 
     <Button
         android:id="@+id/bSettings"
         style="?android:attr/borderlessButtonStyle"
-        android:layout_width="wrap_content"
-        android:layout_height="match_parent"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         android:drawableTop="@drawable/settings_icon_resized"
         android:onClick="openSettings"
         android:text="Settings"
         android:textSize="16sp"
         android:textStyle="bold"
         android:textColor="@android:color/darker_gray" />
-
-
-
-</LinearLayout>
-
 
 
 

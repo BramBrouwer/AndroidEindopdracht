@@ -61,27 +61,27 @@ public class ChampDataActivity extends AppCompatActivity {
          */
     private void setValues(Champion c){
 
-        //References to all views
-        nameView = (TextView)findViewById(R.id.cData_name);
-        titleView = (TextView)findViewById(R.id.cData_title);
-        attack_bar = (ProgressBar)findViewById(R.id.attack_bar);
-        defense_bar = (ProgressBar)findViewById(R.id.defense_bar);
-        magic_bar = (ProgressBar)findViewById(R.id.magic_bar);
-        difficulty_bar = (ProgressBar)findViewById(R.id.difficulty_bar);
-        champ_icon = (ImageView)findViewById(R.id.champ_icon);
+            //References to all views
+            nameView = (TextView)findViewById(R.id.cData_name);
+            titleView = (TextView)findViewById(R.id.cData_title);
+            attack_bar = (ProgressBar)findViewById(R.id.attack_bar);
+            defense_bar = (ProgressBar)findViewById(R.id.defense_bar);
+            magic_bar = (ProgressBar)findViewById(R.id.magic_bar);
+            difficulty_bar = (ProgressBar)findViewById(R.id.difficulty_bar);
+            champ_icon = (ImageView)findViewById(R.id.champ_icon);
 
-        //Update values & set bar thickness
-        this.name = c.name;
-        nameView.setText(name);
-        titleView.setText(c.title);
-        attack_bar.setProgress(c.attack);
-        attack_bar.setScaleY(3f);
-        defense_bar.setProgress(c.defense);
-        defense_bar.setScaleY(3f);
-        magic_bar.setProgress(c.magic);
-        magic_bar.setScaleY(3f);
-        difficulty_bar.setProgress(c.difficulty);
-        difficulty_bar.setScaleY(3f);
+            //Update values & set bar thickness
+            this.name = c.name;
+            nameView.setText(name);
+            titleView.setText(c.title);
+            attack_bar.setProgress(c.attack);
+            attack_bar.setScaleY(3f);
+            defense_bar.setProgress(c.defense);
+            defense_bar.setScaleY(3f);
+            magic_bar.setProgress(c.magic);
+            magic_bar.setScaleY(3f);
+            difficulty_bar.setProgress(c.difficulty);
+            difficulty_bar.setScaleY(3f);
     }
 
     /*

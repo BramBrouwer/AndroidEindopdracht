@@ -124,14 +124,5 @@ public class allChampActivity extends AppCompatActivity {
         //Get current value of the shared preference with key pref_theme (key declared in settingsfragment)
         SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(this);
         return sharedPref.getString(SettingsFragment.KEY_PREF_THEME, "");
-
-
-        /* RelativeLayout root = (RelativeLayout) findViewById(R.id.activity_champ_data);
-
-        if(prefTheme.equals("dark")){
-            root.setBackground(getDrawable(R.drawable.background_texture7));
-        }else{
-            root.setBackgroundColor(Color.parseColor("#FFFFFF"));
-        }*/
     }
 }
