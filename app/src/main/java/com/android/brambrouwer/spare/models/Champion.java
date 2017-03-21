@@ -8,6 +8,17 @@ import android.os.Parcelable;
  */
 public class Champion implements Parcelable{
 
+    public static final Creator<Champion> CREATOR = new Creator<Champion>() {
+        @Override
+        public Champion createFromParcel(Parcel in) {
+            return new Champion(in);
+        }
+
+        @Override
+        public Champion[] newArray(int size) {
+            return new Champion[size];
+        }
+    };
     public int id;
     public String name;
     public String title;
@@ -36,18 +47,6 @@ public class Champion implements Parcelable{
         magic = in.readInt();
         difficulty = in.readInt();
     }
-
-    public static final Creator<Champion> CREATOR = new Creator<Champion>() {
-        @Override
-        public Champion createFromParcel(Parcel in) {
-            return new Champion(in);
-        }
-
-        @Override
-        public Champion[] newArray(int size) {
-            return new Champion[size];
-        }
-    };
 
     @Override
     public int describeContents() {

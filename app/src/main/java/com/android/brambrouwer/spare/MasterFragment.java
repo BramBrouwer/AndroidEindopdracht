@@ -41,9 +41,7 @@ public class MasterFragment extends Fragment {
     }
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         return inflater.inflate(R.layout.fragment_master, container, false);
     }
 
@@ -73,7 +71,7 @@ public class MasterFragment extends Fragment {
         super.onAttach(context);
 
         Activity a; //Cast context to activity
-        a=(Activity) context;
+        a = (Activity) context;
 
         try {
             onMasterItemSelectedListener = (OnMasterItemSelectedListener) a;
@@ -81,7 +79,6 @@ public class MasterFragment extends Fragment {
             throw new ClassCastException(a.toString() + " must implement OnArticleSelectedListener");
         }
     }
-
 
     /*
     Get all champions from api
@@ -92,12 +89,10 @@ public class MasterFragment extends Fragment {
         lolApiController.get(LolApiController.allChampsUrl, getActivity(), new LolApiController.VolleyCallback() {
             @Override
             public void onSuccess(String result) throws JSONException {
-
                 JSONObject j = new JSONObject(result);
                 JSONObject data = j.getJSONObject("data");
                 champs = iterateKeys(data);
                 adapter.notifyDataSetChanged();
-
             }
 
             @Override
@@ -175,8 +170,3 @@ public class MasterFragment extends Fragment {
 }
 
 
-
-
-//TODO
-// Placeholder fragmen voor als er geen list item geselecteerd is
-//Fragmentmanager gebruiken om placeholder te veranderen met detailfragment

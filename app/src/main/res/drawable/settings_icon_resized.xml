@@ -3,9 +3,8 @@
 
     <item
         android:id="@+id/half_overlay"
-        android:drawable="@drawable/settings_icon"
         android:width="150dp"
         android:height="150dp"
-        />
+        android:drawable="@drawable/settings_icon" />
 
 </layer-list>

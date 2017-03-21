@@ -3,9 +3,8 @@
 
     <item
         android:id="@+id/half_overlay"
-        android:drawable="@drawable/all_champs_icon"
         android:width="200dp"
         android:height="200dp"
-        />
+        android:drawable="@drawable/all_champs_icon" />
 
 </layer-list>

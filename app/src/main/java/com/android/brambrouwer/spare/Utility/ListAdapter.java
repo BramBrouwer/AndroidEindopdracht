@@ -32,13 +32,6 @@ public class ListAdapter extends BaseAdapter{
     @Override
     public int getCount(){return allChampActivity.champs.size();}
 
-    //Static class that holds all listitem views
-    private static class ViewHolderItem {
-        TextView name;
-        TextView title;
-        RelativeLayout wrapper;
-    }
-
     //Create a view for each listitem
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
@@ -79,7 +72,6 @@ public class ListAdapter extends BaseAdapter{
         return convertView;
     }
 
-
     //Not implemented
     @Override
     public Object getItem(int position) {
@@ -89,6 +81,13 @@ public class ListAdapter extends BaseAdapter{
     @Override
     public long getItemId(int position) {
         return 0;
+    }
+
+    //Static class that holds all listitem views
+    private static class ViewHolderItem {
+        TextView name;
+        TextView title;
+        RelativeLayout wrapper;
     }
 
 }

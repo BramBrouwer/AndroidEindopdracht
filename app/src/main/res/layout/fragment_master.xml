@@ -2,15 +2,14 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.android.brambrouwer.spare.MasterFragment"
     android:background="@drawable/background_texture7"
-   >
+    tools:context="com.android.brambrouwer.spare.MasterFragment">
 
     <ListView xmlns:android="http://schemas.android.com/apk/res/android"
         android:id="@+id/listview"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:background="@drawable/background_texture7"/>
+        android:background="@drawable/background_texture7" />
 
 
 </FrameLayout>

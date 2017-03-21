@@ -10,21 +10,20 @@
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:text="Champname"
+        android:textColor="@android:color/darker_gray"
         android:textSize="25dp"
-        android:textStyle="bold"
-       android:textColor="@android:color/darker_gray"
-        />
+        android:textStyle="bold" />
 
     <TextView
         android:id="@+id/c_title"
         android:layout_width="match_parent"
         android:layout_height="25dp"
-        android:text="chamtitlelonglong"
-        android:textSize="18dp"
-        android:textStyle="bold"
-        android:layout_marginTop="1dp"
-        android:textColor="@android:color/darker_gray"
         android:layout_alignBottom="@+id/c_name"
-        android:layout_alignParentStart="true" />
+        android:layout_alignParentStart="true"
+        android:layout_marginTop="1dp"
+        android:text="chamtitlelonglong"
+        android:textColor="@android:color/darker_gray"
+        android:textSize="18dp"
+        android:textStyle="bold" />
 
 </RelativeLayout>

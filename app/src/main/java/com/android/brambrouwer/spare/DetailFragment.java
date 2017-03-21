@@ -52,9 +52,7 @@ public class DetailFragment extends Fragment {
     }
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         return inflater.inflate(R.layout.fragment_detail, container, false);
     }
 
@@ -64,25 +62,17 @@ public class DetailFragment extends Fragment {
     @Override
     public void onStart() {
         super.onStart();
+        readPrefs();
         setLoreButtonListener();
         if (c != null) {
             initView(c);
         }
     }
 
-    /*
-        TODO: check if this can be moved to onstart
-     */
-    @Override
-    public void onResume() {
-        super.onResume();
-        readPrefs();
-    }
-
     public void initView(Champion c) {
         readPrefs();                                                //Check preferred theme
         setValues(c);                                               //Update textviews/bars
-        // getChampIcon();
+        //getChampIcon();
     }
 
     /*
@@ -145,9 +135,7 @@ public class DetailFragment extends Fragment {
             val_name = "Chogath";
         }
 
-
         String url = icon_url + val_name + ".png";
-
 
         new AsyncTask<String, Void, Bitmap>() {
             @Override

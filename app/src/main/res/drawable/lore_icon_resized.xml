@@ -3,9 +3,8 @@
 
     <item
         android:id="@+id/half_overlay"
-        android:drawable="@drawable/lore_icon"
         android:width="50dp"
         android:height="50dp"
-        />
+        android:drawable="@drawable/lore_icon" />
 
 </layer-list>

@@ -5,13 +5,7 @@ import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v7.app.AppCompatActivity;
-
 import com.android.brambrouwer.spare.models.Champion;
-//TODO
-// - Check if dual pane                                             X
-// - Small screen layout (draw fragment over other fragment )       X
-// - Ovveride back button
-
 
 public class fragmentActivity extends AppCompatActivity implements MasterFragment.OnMasterItemSelectedListener {
 
@@ -19,7 +13,7 @@ public class fragmentActivity extends AppCompatActivity implements MasterFragmen
     public String screenType;
 
     /*
-    Get the screen type and initialize view depending on a large/normal screen
+    Get the screen type and initialize view
      */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,7 +30,7 @@ public class fragmentActivity extends AppCompatActivity implements MasterFragmen
     }
 
     /*
-        Callback method which is called when a an item is clicked in the master fragment
+        Callback method which is called when an item is clicked in the master fragment
      */
     @Override
     public void onMasterItemSelected(Champion c) {
@@ -58,9 +52,11 @@ public class fragmentActivity extends AppCompatActivity implements MasterFragmen
             transaction.addToBackStack(null);
             transaction.commit();
         }
-
     }
 
+    /*
+       Callback method for the android back button which checks if there any existing fragments in the backstack
+     */
     @Override
     public void onBackPressed() {
         if (getFragmentManager().getBackStackEntryCount() > 0) {
@@ -84,7 +80,7 @@ public class fragmentActivity extends AppCompatActivity implements MasterFragmen
     }
 
     /*
-        Show master view. Will be replace by detail view on click
+     Show master view. Will be replace by detail view on click
      */
     public void normalScreen(){
         Fragment newFragment = new MasterFragment();
@@ -97,7 +93,6 @@ public class fragmentActivity extends AppCompatActivity implements MasterFragmen
     Determine screentype. Returned as either normal or large
      */
     private String getScreenType(){
-        //Determine screen size
 
         String screensize = "";
 
