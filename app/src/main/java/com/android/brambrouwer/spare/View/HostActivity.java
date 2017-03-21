@@ -20,7 +20,7 @@ public class HostActivity extends AppCompatActivity implements MasterFragment.On
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.all_champ);
+        setContentView(R.layout.activity_host);
 
         screenType = getScreenType();
 
