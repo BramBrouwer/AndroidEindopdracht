@@ -1,10 +1,11 @@
-package com.android.brambrouwer.spare;
+package com.android.brambrouwer.spare.View;
 
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.preference.Preference;
 import android.preference.PreferenceFragment;
 
+import com.android.brambrouwer.spare.R;
 
 
 public class SettingsFragment extends PreferenceFragment implements SharedPreferences.OnSharedPreferenceChangeListener {

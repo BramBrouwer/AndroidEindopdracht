@@ -3,7 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/background_texture7"
-    tools:context="com.android.brambrouwer.spare.MasterFragment">
+    tools:context="com.android.brambrouwer.spare.View.MasterFragment">
 
     <ListView xmlns:android="http://schemas.android.com/apk/res/android"
         android:id="@+id/listview"

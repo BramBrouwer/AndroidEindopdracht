@@ -1,4 +1,4 @@
-package com.android.brambrouwer.spare;
+package com.android.brambrouwer.spare.View;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -19,7 +19,8 @@ import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
-import com.android.brambrouwer.spare.models.Champion;
+import com.android.brambrouwer.spare.Model.Champion;
+import com.android.brambrouwer.spare.R;
 
 import java.io.IOException;
 import java.net.MalformedURLException;

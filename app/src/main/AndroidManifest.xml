@@ -10,7 +10,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
-            android:name=".LolHomeActivity"
+            android:name=".View.HomeActivity"
             android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -18,21 +18,15 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".View.HostActivity" />
         <activity
-            android:name=".allChampActivity"
-            android:screenOrientation="portrait" />
-        <activity
-            android:name=".ChampDataActivity"
-            android:screenOrientation="portrait" />
-        <activity android:name=".fragmentActivity" />
-        <activity
-            android:name=".PreferenceActivity"
+            android:name=".View.SettingsActivity"
             android:label="@string/title_activity_settings"
-            android:parentActivityName=".LolHomeActivity"
+            android:parentActivityName=".View.HomeActivity"
             android:screenOrientation="portrait">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.android.brambrouwer.spare.LolHomeActivity" />
+                android:value="com.android.brambrouwer.spare.View.HomeActivity" />
         </activity>
     </application>
 

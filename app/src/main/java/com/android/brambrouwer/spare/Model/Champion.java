@@ -1,4 +1,4 @@
-package com.android.brambrouwer.spare.models;
+package com.android.brambrouwer.spare.Model;
 
 import android.os.Parcel;
 import android.os.Parcelable;

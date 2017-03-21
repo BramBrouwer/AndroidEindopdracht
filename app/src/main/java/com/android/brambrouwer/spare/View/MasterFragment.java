@@ -1,4 +1,4 @@
-package com.android.brambrouwer.spare;
+package com.android.brambrouwer.spare.View;
 
 
 import android.app.Activity;
@@ -13,9 +13,10 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ListView;
 
-import com.android.brambrouwer.spare.Utility.ListAdapter2;
-import com.android.brambrouwer.spare.Utility.LolApiController;
-import com.android.brambrouwer.spare.models.Champion;
+import com.android.brambrouwer.spare.Controller.ListController;
+import com.android.brambrouwer.spare.Controller.ApiController;
+import com.android.brambrouwer.spare.Model.Champion;
+import com.android.brambrouwer.spare.R;
 import com.android.volley.VolleyError;
 
 import org.json.JSONException;
@@ -30,7 +31,7 @@ import java.util.List;
 public class MasterFragment extends Fragment {
 
     public ArrayList<Champion> champs;
-    public ListAdapter2 adapter;
+    public ListController adapter;
     public ListView list;
     public String preferredListtheme;
     public OnMasterItemSelectedListener onMasterItemSelectedListener;
@@ -56,7 +57,7 @@ public class MasterFragment extends Fragment {
         //Init champlist, adapter and clicklistener
         champs = new ArrayList<>();
         list = (ListView) getActivity().findViewById(R.id.listview);
-        adapter = new ListAdapter2(this);
+        adapter = new ListController(this);
         list.setAdapter(adapter);
         setOnClickListener();
 
@@ -85,8 +86,8 @@ public class MasterFragment extends Fragment {
      */
     public void getAllChamps() {
 
-        final LolApiController lolApiController = new LolApiController();
-        lolApiController.get(LolApiController.allChampsUrl, getActivity(), new LolApiController.VolleyCallback() {
+        final ApiController apiController = new ApiController();
+        apiController.get(ApiController.allChampsUrl, getActivity(), new ApiController.VolleyCallback() {
             @Override
             public void onSuccess(String result) throws JSONException {
                 JSONObject j = new JSONObject(result);
@@ -97,7 +98,7 @@ public class MasterFragment extends Fragment {
 
             @Override
             public void onError(VolleyError errorMessage) {
-                lolApiController.generateErrorMessage(getView().getContext(), errorMessage);
+                apiController.generateErrorMessage(getView().getContext(), errorMessage);
             }
         });
 

@@ -1,4 +1,4 @@
-package com.android.brambrouwer.spare.Utility;
+package com.android.brambrouwer.spare.Controller;
 
 import android.app.AlertDialog;
 import android.app.ProgressDialog;
@@ -18,7 +18,7 @@ import com.android.volley.toolbox.StringRequest;
 import org.json.JSONException;
 
 
-public class LolApiController {
+public class ApiController {
 
     public static String allChampsUrl = "https://global.api.pvp.net/api/lol/static-data/euw/v1.2/champion?champData=info&api_key=6cbf8df1-8340-4de9-bf1d-f1034b3b7171";
     private ProgressDialog progressDialog;

@@ -1,13 +1,14 @@
-package com.android.brambrouwer.spare;
+package com.android.brambrouwer.spare.View;
 
 import android.content.res.Configuration;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v7.app.AppCompatActivity;
-import com.android.brambrouwer.spare.models.Champion;
+import com.android.brambrouwer.spare.Model.Champion;
+import com.android.brambrouwer.spare.R;
 
-public class fragmentActivity extends AppCompatActivity implements MasterFragment.OnMasterItemSelectedListener {
+public class HostActivity extends AppCompatActivity implements MasterFragment.OnMasterItemSelectedListener {
 
 
     public String screenType;

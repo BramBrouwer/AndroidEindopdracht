@@ -1,31 +1,28 @@
-package com.android.brambrouwer.spare.Utility;
+package com.android.brambrouwer.spare.Controller;
 
 import android.content.Context;
 import android.graphics.Color;
-import android.graphics.drawable.Drawable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
-import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
-import com.android.brambrouwer.spare.MasterFragment;
+import com.android.brambrouwer.spare.View.MasterFragment;
 import com.android.brambrouwer.spare.R;
-import com.android.brambrouwer.spare.allChampActivity;
 
 /**
  * Created by bram on 30-1-2017.
  */
 
-public class ListAdapter2 extends BaseAdapter{
+public class ListController extends BaseAdapter{
 
     //Activity using the listadapter
     private MasterFragment masterFragment;
 
     //Constructor
-    public ListAdapter2(MasterFragment masterFragment) {
+    public ListController(MasterFragment masterFragment) {
         this.masterFragment = masterFragment;
     }
 
