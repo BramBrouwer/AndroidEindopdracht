@@ -53,7 +53,6 @@ public class MasterFragment extends Fragment {
     @Override
     public void onStart() {
         super.onStart();
-
         preferredListtheme = readPrefs();
 
         if(champs == null){
@@ -64,6 +63,7 @@ public class MasterFragment extends Fragment {
             setOnClickListener();
             getAllChamps();
         }else{
+
             list = (ListView) getActivity().findViewById(R.id.listview);
             list.setAdapter(adapter);
             setOnClickListener();
@@ -136,15 +136,7 @@ public class MasterFragment extends Fragment {
         //Convert to jsonobjects
         for (String s : sublist) {
             JSONObject obj = json.getJSONObject(s);
-            int c_id = obj.getInt("id");
-            String c_name = obj.getString("name");
-            String c_title = obj.getString("title");
-            JSONObject info = obj.getJSONObject("info");
-            String c_attack = info.getString("attack");
-            String c_defense = info.getString("defense");
-            String c_magic = info.getString("magic");
-            String c_difficulty = info.getString("difficulty");
-            Champion c = new Champion(c_id, c_name, c_title, c_attack, c_defense, c_magic, c_difficulty);
+            Champion c = new Champion(obj);
             retChamps.add(c);
         }
         return retChamps;

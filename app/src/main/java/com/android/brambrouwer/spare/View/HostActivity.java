@@ -1,11 +1,12 @@
 package com.android.brambrouwer.spare.View;
 
 import android.content.pm.ActivityInfo;
-import android.content.res.Configuration;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v7.app.AppCompatActivity;
+
+import com.android.brambrouwer.spare.Controller.PreferenceController;
 import com.android.brambrouwer.spare.Model.Champion;
 import com.android.brambrouwer.spare.R;
 
@@ -22,7 +23,7 @@ public class HostActivity extends AppCompatActivity implements MasterFragment.On
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_host);
 
-        screenType = getScreenType();
+        screenType = PreferenceController.getScreenType(this);
 
         if(screenType.equals("normal")){
             normalScreen();
@@ -91,27 +92,6 @@ public class HostActivity extends AppCompatActivity implements MasterFragment.On
         android.support.v4.app.FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
         transaction.replace(R.id.fragment_placeholder, newFragment);
         transaction.commit();
-    }
-
-    /*
-    Determine screentype. Returned as either normal or large
-     */
-    private String getScreenType(){
-
-        String screensize = "";
-
-        if ((getResources().getConfiguration().screenLayout & Configuration.SCREENLAYOUT_SIZE_MASK) == Configuration.SCREENLAYOUT_SIZE_LARGE ) {
-           screensize = "large";
-        }
-        else if ((getResources().getConfiguration().screenLayout & Configuration.SCREENLAYOUT_SIZE_MASK) == Configuration.SCREENLAYOUT_SIZE_NORMAL) {
-            screensize = "normal";
-        }
-        else if ((getResources().getConfiguration().screenLayout & Configuration.SCREENLAYOUT_SIZE_MASK) == Configuration.SCREENLAYOUT_SIZE_SMALL) {
-            screensize = "normal";
-        }else if ((getResources().getConfiguration().screenLayout & Configuration.SCREENLAYOUT_SIZE_MASK) == Configuration.SCREENLAYOUT_SIZE_XLARGE) {
-            screensize = "large";
-        }
-        return screensize;
     }
 
 }

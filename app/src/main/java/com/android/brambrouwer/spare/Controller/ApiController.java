@@ -26,12 +26,12 @@ public class ApiController {
 
     public void get(String url, Context context, final VolleyCallback callback) {
 
-        showDialog(context); //Show loading dialog
+       // showDialog(context); //Show loading dialog
 
         StringRequest sr = new StringRequest(Request.Method.GET, url, new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
-                progressDialog.dismiss();
+             //   progressDialog.dismiss();
                 try {
                     callback.onSuccess(response);
                 } catch (JSONException e) {
@@ -41,7 +41,7 @@ public class ApiController {
         }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError volleyError) {
-                progressDialog.dismiss();
+              //  progressDialog.dismiss();
                 callback.onError(volleyError);
             }
         }) ;
@@ -50,11 +50,14 @@ public class ApiController {
 
     // UTILITY
     private void showDialog(Context context) {
+
         progressDialog = new ProgressDialog(context,
                 ProgressDialog.STYLE_HORIZONTAL);
         progressDialog.setIndeterminate(true);
         progressDialog.setMessage("Loading....");
-        progressDialog.show();
+        if(context != null) {
+            progressDialog.show();
+        }
     }
 
     //Generates an error message corresponding with error response

@@ -3,6 +3,9 @@ package com.android.brambrouwer.spare.Model;
 import android.os.Parcel;
 import android.os.Parcelable;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
 /*
     Model class for each champion. Implements parcelable so we can it between intents as an extra
  */
@@ -36,6 +39,17 @@ public class Champion implements Parcelable{
         this.magic = Integer.parseInt(magic);
         this.difficulty = Integer.parseInt(difficulty);
 
+    }
+    public Champion(JSONObject obj) throws JSONException
+    {
+        this.id = obj.getInt("id");
+        this.name = obj.getString("name");
+        this.title = obj.getString("title");
+        JSONObject info = obj.getJSONObject("info");
+        this.attack = Integer.parseInt(info.getString("attack"));
+        this.defense = Integer.parseInt(info.getString("defense"));
+        this.magic = Integer.parseInt(info.getString("magic"));
+        this.difficulty = Integer.parseInt(info.getString("difficulty"));
     }
 
     protected Champion(Parcel in) {

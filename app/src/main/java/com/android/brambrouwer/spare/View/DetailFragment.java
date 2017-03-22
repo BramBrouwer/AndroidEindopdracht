@@ -8,7 +8,6 @@ import android.graphics.Color;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
-import android.preference.PreferenceManager;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -16,7 +15,6 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.android.brambrouwer.spare.Controller.PreferenceController;
@@ -126,15 +124,24 @@ public class DetailFragment extends Fragment {
     */
     private void getChampIcon() {
         if (name.equals("")) return;
-        //2 opties, of hardcoded 2 namen hier checken die een afwijkedende image url hebben, of bij iedere naam een api call maken naar champion{id} om de image attr op te halen
-        // Dit omdat de icon links inconsistent zijn. Soms wordt een 'in de naam wel vertaald, soms wordt ie simpelweg verwijderd
-        String val_name = name.replaceAll("\\s+", "");
-        val_name = val_name.replaceAll("\'+", "");
 
-        if (name.equals("Vel'Koz")) {
-            val_name = "Velkoz";
-        } else if (name.equals("Cho'Gath")) {
-            val_name = "Chogath";
+        //2 opties, of hardcoded 3 namen hier checken die een afwijkedende image url hebben, of bij iedere naam een api call maken naar champion{id} om de image attr op te halen
+        // Dit omdat de icon links inconsistent zijn. Soms wordt een 'in de naam wel vertaald, soms wordt ie simpelweg verwijderd, soms wordt een hoofdletter weggelaten
+
+        String val_name = name.replaceAll("\\s+", "");  // remove whitespace
+        val_name = val_name.replaceAll("\'+", "");      //remove quotes
+        val_name = val_name.replaceAll("\\.+", "");     //Remove dots
+
+        switch (name) {
+            case "Vel'Koz":
+                val_name = "Velkoz";
+                break;
+            case "Cho'Gath":
+                val_name = "Chogath";
+                break;
+            case "Kha'Zix":
+                val_name = "Khazix";
+                break;
         }
 
         String url = icon_url + val_name + ".png";
