@@ -19,6 +19,7 @@ import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import com.android.brambrouwer.spare.Controller.PreferenceController;
 import com.android.brambrouwer.spare.Model.Champion;
 import com.android.brambrouwer.spare.R;
 
@@ -58,12 +59,13 @@ public class DetailFragment extends Fragment {
     }
 
     /*
-        If champion has been set already, update the view (only relevant for small/large screens
+        If champion has been set already, update the view (only relevant for small/normal  screens)
+        They will call this fragment passing a champion in extras. On large screens initview will be called directly
      */
     @Override
     public void onStart() {
         super.onStart();
-        readPrefs();
+        PreferenceController.getPreferredTheme(getActivity(),getActivity().findViewById(R.id.activity_champ_data));
         setLoreButtonListener();
         if (c != null) {
             initView(c);
@@ -71,7 +73,6 @@ public class DetailFragment extends Fragment {
     }
 
     public void initView(Champion c) {
-        readPrefs();                                                //Check preferred theme
         setValues(c);                                               //Update textviews/bars
         getChampIcon();
     }
@@ -166,21 +167,4 @@ public class DetailFragment extends Fragment {
         }.execute(url);
     }
 
-    /*
-        Get current value of the theme pref & set backroung accordingly
-        TODO: maybe move this a seperate conroller
-     */
-    public void readPrefs() {
-
-        //Get current value of the shared preference with key pref_theme (key declared in settingsfragment)
-        SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(getActivity());
-        String prefTheme = sharedPref.getString(SettingsFragment.KEY_PREF_THEME, "");
-        RelativeLayout root = (RelativeLayout) getActivity().findViewById(R.id.activity_champ_data);
-
-        if (prefTheme.equals("dark")) {
-            root.setBackground(getActivity().getDrawable(R.drawable.background_texture7));
-        } else {
-            root.setBackgroundColor(Color.parseColor("#FFFFFF"));
-        }
-    }
 }

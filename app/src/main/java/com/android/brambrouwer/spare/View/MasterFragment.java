@@ -46,26 +46,33 @@ public class MasterFragment extends Fragment {
         return inflater.inflate(R.layout.fragment_master, container, false);
     }
 
+
     /*
     Called in onstart so we can reference views via hostactivity
      */
     @Override
     public void onStart() {
         super.onStart();
+
         preferredListtheme = readPrefs();
 
-        //Init champlist, adapter and clicklistener
-        champs = new ArrayList<>();
-        list = (ListView) getActivity().findViewById(R.id.listview);
-        adapter = new ListController(this);
-        list.setAdapter(adapter);
-        setOnClickListener();
+        if(champs == null){
+            champs = new ArrayList<>();
+            list = (ListView) getActivity().findViewById(R.id.listview);
+            adapter = new ListController(this);
+            list.setAdapter(adapter);
+            setOnClickListener();
+            getAllChamps();
+        }else{
+            list = (ListView) getActivity().findViewById(R.id.listview);
+            list.setAdapter(adapter);
+            setOnClickListener();
+            adapter.notifyDataSetChanged();
+        }
 
-        getAllChamps();
+
+
     }
-
-
-
 
     /*
     Checks if the host activity has implemented the Onmasteritemselected interface, if it has reference it in the onMasteritemSelectedListener
@@ -93,10 +100,10 @@ public class MasterFragment extends Fragment {
         apiController.get(ApiController.allChampsUrl, getActivity(), new ApiController.VolleyCallback() {
             @Override
             public void onSuccess(String result) throws JSONException {
-                JSONObject j = new JSONObject(result);
+                JSONObject j = new JSONObject(result);      //Get data object from result
                 JSONObject data = j.getJSONObject("data");
-                champs = iterateKeys(data);
-                adapter.notifyDataSetChanged();
+                champs = iterateKeys(data);                 //List keys and alphabetize them
+                adapter.notifyDataSetChanged();             //Update list
             }
 
             @Override

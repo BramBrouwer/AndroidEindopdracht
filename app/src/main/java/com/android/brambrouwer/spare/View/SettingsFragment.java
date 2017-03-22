@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.preference.Preference;
 import android.preference.PreferenceFragment;
 
+import com.android.brambrouwer.spare.Controller.PreferenceController;
 import com.android.brambrouwer.spare.R;
 
 
@@ -13,8 +14,6 @@ public class SettingsFragment extends PreferenceFragment implements SharedPrefer
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
-        // Load the preferences from an XML resource
         addPreferencesFromResource(R.xml.settings_home);
     }
 
