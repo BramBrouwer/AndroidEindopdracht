@@ -69,9 +69,6 @@ public class MasterFragment extends Fragment {
             setOnClickListener();
             adapter.notifyDataSetChanged();
         }
-
-
-
     }
 
     /*
@@ -133,7 +130,7 @@ public class MasterFragment extends Fragment {
         List<String> sublist = keys.subList(1, keys.size());
         Collections.sort(sublist);
 
-        //Convert to jsonobjects
+        //Create champion objects
         for (String s : sublist) {
             JSONObject obj = json.getJSONObject(s);
             Champion c = new Champion(obj);

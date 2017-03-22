@@ -30,16 +30,7 @@ public class Champion implements Parcelable{
     public int magic;
     public int difficulty;
 
-    public Champion(int id,String name, String title, String attack, String defense, String magic, String difficulty){
-        this.id = id;
-        this.name = name;
-        this.title = title;
-        this.attack = Integer.parseInt(attack);
-        this.defense = Integer.parseInt(defense);
-        this.magic = Integer.parseInt(magic);
-        this.difficulty = Integer.parseInt(difficulty);
 
-    }
     public Champion(JSONObject obj) throws JSONException
     {
         this.id = obj.getInt("id");
