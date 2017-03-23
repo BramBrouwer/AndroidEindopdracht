@@ -111,8 +111,6 @@ public class DetailFragment extends Fragment {
         difficulty_bar.setScaleY(3f);
     }
 
-
-
     /*
      Manually called when a champion is selected in master fragment on large screens.
      Updates all views and champ icon
@@ -138,8 +136,8 @@ public class DetailFragment extends Fragment {
     }
 
     /*
-Asynchronously get champion icon and display it in top left corner
-*/
+        Asynchronously get champion icon and display it in top left corner
+    */
     private void getChampIcon() {
         if (name.equals("")) return;
 
