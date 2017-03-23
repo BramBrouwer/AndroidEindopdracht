@@ -1,5 +1,7 @@
 package com.android.brambrouwer.spare.View;
 
+import android.app.ProgressDialog;
+import android.content.Context;
 import android.content.pm.ActivityInfo;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -14,7 +16,7 @@ public class HostActivity extends AppCompatActivity implements MasterFragment.On
 
 
     public String screenType;
-
+    public ProgressDialog pDialog;
     /*
     Get the screen type and initialize view
      */
@@ -93,5 +95,7 @@ public class HostActivity extends AppCompatActivity implements MasterFragment.On
         transaction.replace(R.id.fragment_placeholder, newFragment);
         transaction.commit();
     }
+
+
 
 }

@@ -1,16 +1,11 @@
 package com.android.brambrouwer.spare.View;
 
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.content.pm.ActivityInfo;
-import android.content.res.Configuration;
-import android.graphics.Color;
-import android.preference.PreferenceManager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.text.Layout;
 import android.view.View;
-import android.widget.LinearLayout;
+import android.widget.Button;
 
 import com.android.brambrouwer.spare.Controller.PreferenceController;
 import com.android.brambrouwer.spare.R;
@@ -20,11 +15,12 @@ public class HomeActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
 
         screenType = PreferenceController.getScreenType(this);
-
         if(screenType.equals("normal")){
             setRequestedOrientation (ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);     //  Fixed Portrait orientation
         }else if(screenType.equals("large")){
@@ -33,11 +29,20 @@ public class HomeActivity extends AppCompatActivity {
 
     }
 
-    //Check if background has changed when returning from settings
+    /*
+        Update text color and background according to preferred theme
+     */
+    private void updateViewAccordingToPrefs(){
+        PreferenceController.updatePreferredButtonTextColor((Button)findViewById(R.id.bAllChamps),this);
+        PreferenceController.updatePreferredButtonTextColor((Button)findViewById(R.id.bSettings),this);
+        PreferenceController.updatePreferredBackground(this,findViewById(R.id.activity_home));
+        PreferenceController.updatePreferredViewColor((View)findViewById(R.id.homeDivider),this);
+    }
+
     @Override
     protected void onResume() {
         super.onResume();
-        PreferenceController.getPreferredTheme(this,findViewById(R.id.activity_home));
+        updateViewAccordingToPrefs();
     }
 
     public void openAllChamps(View view){
@@ -49,6 +54,7 @@ public class HomeActivity extends AppCompatActivity {
         Intent intent = new Intent(HomeActivity.this, SettingsActivity.class);
         startActivity(intent);
     }
+
 
 
 }

@@ -2,6 +2,7 @@ package com.android.brambrouwer.spare.View;
 
 
 import android.app.Activity;
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -35,6 +36,8 @@ public class MasterFragment extends Fragment {
     public ListView list;
     public String preferredListtheme;
     public OnMasterItemSelectedListener onMasterItemSelectedListener;
+    public ProgressDialog pDialog;
+
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -45,7 +48,6 @@ public class MasterFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         return inflater.inflate(R.layout.fragment_master, container, false);
     }
-
 
     /*
     Called in onstart so we can reference views via hostactivity
@@ -62,7 +64,8 @@ public class MasterFragment extends Fragment {
             list.setAdapter(adapter);
             setOnClickListener();
             getAllChamps();
-        }else{
+        }
+    else{
 
             list = (ListView) getActivity().findViewById(R.id.listview);
             list.setAdapter(adapter);
@@ -77,7 +80,6 @@ public class MasterFragment extends Fragment {
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
-
         Activity a; //Cast context to activity
         a = (Activity) context;
 
@@ -92,19 +94,21 @@ public class MasterFragment extends Fragment {
     Get all champions from api
      */
     public void getAllChamps() {
-
+        showProgressDialog();
         final ApiController apiController = new ApiController();
-        apiController.get(ApiController.allChampsUrl, getActivity(), new ApiController.VolleyCallback() {
+        apiController.get(ApiController.allChampsUrl,getActivity(), new ApiController.VolleyCallback() {
             @Override
             public void onSuccess(String result) throws JSONException {
                 JSONObject j = new JSONObject(result);      //Get data object from result
                 JSONObject data = j.getJSONObject("data");
                 champs = iterateKeys(data);                 //List keys and alphabetize them
+                dismissProgressDialog();
                 adapter.notifyDataSetChanged();             //Update list
             }
 
             @Override
             public void onError(VolleyError errorMessage) {
+                dismissProgressDialog();
                 apiController.generateErrorMessage(getView().getContext(), errorMessage);
             }
         });
@@ -140,8 +144,17 @@ public class MasterFragment extends Fragment {
     }
 
     /*
-    On list item click, pass champion object to host activity
+    Get current value of the theme pref & set backroung accordingly (should be done before filling the list
      */
+    public String readPrefs() {
+        //Get current value of the shared preference with key pref_theme (key declared in settingsfragment)
+        SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(getActivity());
+        return sharedPref.getString(SettingsFragment.KEY_PREF_THEME, "");
+    }
+
+    /*
+     On list item click, pass champion object to host activity
+      */
     private void setOnClickListener() {
         list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
@@ -153,20 +166,46 @@ public class MasterFragment extends Fragment {
     }
 
     /*
-    Get current value of the theme pref & set backroung accordingly (should be done before filling the list
-     */
-    public String readPrefs() {
-        //Get current value of the shared preference with key pref_theme (key declared in settingsfragment)
-        SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(getActivity());
-        return sharedPref.getString(SettingsFragment.KEY_PREF_THEME, "");
-    }
-
-    /*
-   Interface used for commincation between master fragment and hostactivity
-   */
+Interface used for commincation between master fragment and hostactivity
+*/
     public interface OnMasterItemSelectedListener {
         void onMasterItemSelected(Champion c);
     }
+
+
+    /*
+    Progress dialog shown while loading
+     */
+    private void showProgressDialog() {
+        if (pDialog == null) {
+            pDialog = new ProgressDialog(getActivity());
+            pDialog.setMessage("Loading. Please wait...");
+            pDialog.setIndeterminate(false);
+            pDialog.setCancelable(false);
+        }
+        pDialog.show();
+    }
+
+    /*
+    Close dialog
+     */
+    private void dismissProgressDialog() {
+        if (pDialog != null && pDialog.isShowing()) {
+            pDialog.dismiss();
+        }
+    }
+    /*
+    If view is destroyed make sure we dissmiss the dialog
+     */
+    @Override
+    public void onDestroy() {
+        dismissProgressDialog();
+        super.onDestroy();
+    }
+
+
+
+
 }
 
 

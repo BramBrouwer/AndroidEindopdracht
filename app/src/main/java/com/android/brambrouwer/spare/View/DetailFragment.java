@@ -1,10 +1,8 @@
 package com.android.brambrouwer.spare.View;
 
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
-import android.graphics.Color;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -63,16 +61,11 @@ public class DetailFragment extends Fragment {
     @Override
     public void onStart() {
         super.onStart();
-        PreferenceController.getPreferredTheme(getActivity(),getActivity().findViewById(R.id.activity_champ_data));
+        updateViewAccordingToPrefs();
         setLoreButtonListener();
         if (c != null) {
             initView(c);
         }
-    }
-
-    public void initView(Champion c) {
-        setValues(c);                                               //Update textviews/bars
-        getChampIcon();
     }
 
     /*
@@ -119,18 +112,40 @@ public class DetailFragment extends Fragment {
     }
 
 
+
     /*
-   Asynchronously get champion icon and display it in top left corner
+     Manually called when a champion is selected in master fragment on large screens.
+     Updates all views and champ icon
     */
+    public void initView(Champion c) {
+        setValues(c);
+        getChampIcon();
+    }
+
+    /*
+        Update text color and background according to preferred theme
+     */
+    private void updateViewAccordingToPrefs(){
+        PreferenceController.updatePreferredButtonTextColor((Button)getActivity().findViewById(R.id.lore_button_frag),getActivity());
+        PreferenceController.updatePreferredTextViewColor((TextView)getActivity().findViewById(R.id.cData_name),getActivity());
+        PreferenceController.updatePreferredTextViewColor((TextView)getActivity().findViewById(R.id.cData_title),getActivity());
+        PreferenceController.updatePreferredBackground(getActivity(),getActivity().findViewById(R.id.activity_champ_data));
+        PreferenceController.updatePreferredViewColor(getActivity().findViewById(R.id.cData_topdivider),getActivity());
+        PreferenceController.updatePreferredViewColor(getActivity().findViewById(R.id.attack_divider),getActivity());
+        PreferenceController.updatePreferredViewColor(getActivity().findViewById(R.id.defense_divider),getActivity());
+        PreferenceController.updatePreferredViewColor(getActivity().findViewById(R.id.magic_divider),getActivity());
+        PreferenceController.updatePreferredViewColor(getActivity().findViewById(R.id.bottom_bar),getActivity());
+    }
+
+    /*
+Asynchronously get champion icon and display it in top left corner
+*/
     private void getChampIcon() {
         if (name.equals("")) return;
 
-        //2 opties, of hardcoded 3 namen hier checken die een afwijkedende image url hebben, of bij iedere naam een api call maken naar champion{id} om de image attr op te halen
-        // Dit omdat de icon links inconsistent zijn. Soms wordt een 'in de naam wel vertaald, soms wordt ie simpelweg verwijderd, soms wordt een hoofdletter weggelaten
-
-        String val_name = name.replaceAll("\\s+", "");  // remove whitespace
-        val_name = val_name.replaceAll("\'+", "");      //remove quotes
-        val_name = val_name.replaceAll("\\.+", "");     //Remove dots
+        //Soms is de letter na een leesteken dat weggehaald wel een hoofdletter in de link, soms niet. De links zijn inconsistent
+        //Hierdoor moet ik een paar namen individueel checken
+        String val_name;
 
         switch (name) {
             case "Vel'Koz":
@@ -141,6 +156,9 @@ public class DetailFragment extends Fragment {
                 break;
             case "Kha'Zix":
                 val_name = "Khazix";
+                break;
+            default :
+                val_name = name.replaceAll("[^a-zA-Z]+", "");
                 break;
         }
 

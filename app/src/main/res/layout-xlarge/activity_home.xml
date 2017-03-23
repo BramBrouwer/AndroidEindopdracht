@@ -22,7 +22,6 @@
         android:drawableTop="@drawable/all_champs_icon_resized"
         android:onClick="openAllChamps"
         android:text="All champions"
-        android:textColor="@android:color/darker_gray"
         android:textSize="16sp"
         android:textStyle="bold"
         android:layout_weight="0.49"
@@ -35,7 +34,8 @@
         android:layout_height="match_parent"
         android:layout_marginBottom="25dp"
         android:layout_marginTop="25dp"
-        android:background="#000000" />
+        android:background="#000000"
+        android:id="@+id/homeDivider"/>
 
 
     <Button
@@ -46,7 +46,6 @@
         android:drawableTop="@drawable/settings_icon_resized"
         android:onClick="openSettings"
         android:text="Settings"
-        android:textColor="@android:color/darker_gray"
         android:drawablePadding="50dp"
         android:textSize="16sp"
         android:textStyle="bold"

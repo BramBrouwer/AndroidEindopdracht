@@ -21,17 +21,14 @@ import org.json.JSONException;
 public class ApiController {
 
     public static String allChampsUrl = "https://global.api.pvp.net/api/lol/static-data/euw/v1.2/champion?champData=info&api_key=6cbf8df1-8340-4de9-bf1d-f1034b3b7171";
-    private ProgressDialog progressDialog;
 
 
     public void get(String url, Context context, final VolleyCallback callback) {
 
-       // showDialog(context); //Show loading dialog
 
         StringRequest sr = new StringRequest(Request.Method.GET, url, new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
-             //   progressDialog.dismiss();
                 try {
                     callback.onSuccess(response);
                 } catch (JSONException e) {
@@ -41,24 +38,12 @@ public class ApiController {
         }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError volleyError) {
-              //  progressDialog.dismiss();
                 callback.onError(volleyError);
             }
         }) ;
         MySingleton.getInstance(context).addToRequestQueue(sr);
     }
 
-    // UTILITY
-    private void showDialog(Context context) {
-
-        progressDialog = new ProgressDialog(context,
-                ProgressDialog.STYLE_HORIZONTAL);
-        progressDialog.setIndeterminate(true);
-        progressDialog.setMessage("Loading....");
-        if(context != null) {
-            progressDialog.show();
-        }
-    }
 
     //Generates an error message corresponding with error response
     public void generateErrorMessage(Context context, VolleyError error) {

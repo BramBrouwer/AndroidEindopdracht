@@ -12,7 +12,10 @@
         android:text="Champname"
         android:textColor="@android:color/darker_gray"
         android:textSize="25dp"
-        android:textStyle="bold" />
+        android:textStyle="bold"
+        android:gravity="center_horizontal"
+
+        />
 
     <TextView
         android:id="@+id/c_title"
@@ -24,6 +27,8 @@
         android:text="chamtitlelonglong"
         android:textColor="@android:color/darker_gray"
         android:textSize="18dp"
-        android:textStyle="bold" />
+        android:textStyle="bold"
+        android:gravity="center_horizontal"
+        />
 
 </RelativeLayout>

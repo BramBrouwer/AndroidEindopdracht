@@ -4,8 +4,7 @@
     android:layout_height="match_parent"
     tools:context="com.android.brambrouwer.spare.View.DetailFragment">
 
-    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:tools="http://schemas.android.com/tools"
+    <RelativeLayout
         android:id="@+id/activity_champ_data"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -57,7 +56,7 @@
             android:layout_height="50dp"
             android:layout_below="@id/cData_topdivider"
             android:layout_marginTop="25dp"
-            android:src="@drawable/attack_icon"
+            android:src="@drawable/attack_icon2"
 
 
             />
@@ -94,7 +93,7 @@
             android:layout_height="50dp"
             android:layout_below="@id/attack_divider"
             android:layout_marginTop="25dp"
-            android:src="@drawable/health_icon" />
+            android:src="@drawable/defense_icon2" />
 
         <ProgressBar
             android:id="@+id/defense_bar"
@@ -127,7 +126,7 @@
             android:layout_height="50dp"
             android:layout_below="@id/defense_divider"
             android:layout_marginTop="25dp"
-            android:src="@drawable/magic_icon" />
+            android:src="@drawable/magic_icon2" />
 
         <ProgressBar
             android:id="@+id/magic_bar"
@@ -160,7 +159,7 @@
             android:layout_height="50dp"
             android:layout_below="@id/magic_divider"
             android:layout_marginTop="25dp"
-            android:src="@drawable/difficulty_icon" />
+            android:src="@drawable/difficulty_icon3" />
 
         <ProgressBar
             android:id="@+id/difficulty_bar"

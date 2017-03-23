@@ -61,10 +61,12 @@ public class ListController extends BaseAdapter{
         if(preferredTheme.equals("dark"))
         {
             holder.wrapper.setBackgroundColor(Color.parseColor("#000000"));
-
+            holder.name.setTextColor(Color.LTGRAY);
+            holder.title.setTextColor(Color.LTGRAY);
         }else{
             holder.wrapper.setBackgroundColor(Color.parseColor("#FFFFFF"));
-
+            holder.name.setTextColor(Color.BLACK);
+            holder.title.setTextColor(Color.BLACK);
         }
 
         return convertView;
