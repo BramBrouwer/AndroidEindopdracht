@@ -52,22 +52,16 @@ public class ListController extends BaseAdapter{
         //Get values we want to display from list
         String firstLineStr = this.masterFragment.champs.get(position).name;
         String secondLineStr = this.masterFragment.champs.get(position).title;
-        String preferredTheme = this.masterFragment.preferredListtheme;
 
         //Set values
         holder.name.setText(firstLineStr);
         holder.title.setText(secondLineStr);
 
-        if(preferredTheme.equals("dark"))
-        {
-            holder.wrapper.setBackgroundColor(Color.parseColor("#000000"));
-            holder.name.setTextColor(Color.LTGRAY);
-            holder.title.setTextColor(Color.LTGRAY);
-        }else{
-            holder.wrapper.setBackgroundColor(Color.parseColor("#FFFFFF"));
-            holder.name.setTextColor(Color.BLACK);
-            holder.title.setTextColor(Color.BLACK);
-        }
+        //Update text colour
+        PreferenceController.updatePreferredTextViewColor(holder.name,masterFragment.getActivity());
+        PreferenceController.updatePreferredTextViewColor(holder.title,masterFragment.getActivity());
+
+
 
         return convertView;
     }

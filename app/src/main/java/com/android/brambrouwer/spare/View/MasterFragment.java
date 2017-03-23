@@ -16,6 +16,7 @@ import android.widget.ListView;
 
 import com.android.brambrouwer.spare.Controller.ListController;
 import com.android.brambrouwer.spare.Controller.ApiController;
+import com.android.brambrouwer.spare.Controller.PreferenceController;
 import com.android.brambrouwer.spare.Model.Champion;
 import com.android.brambrouwer.spare.R;
 import com.android.volley.VolleyError;
@@ -34,7 +35,6 @@ public class MasterFragment extends Fragment {
     public ArrayList<Champion> champs;
     public ListController adapter;
     public ListView list;
-    public String preferredListtheme;
     public OnMasterItemSelectedListener onMasterItemSelectedListener;
     public ProgressDialog pDialog;
 
@@ -55,7 +55,7 @@ public class MasterFragment extends Fragment {
     @Override
     public void onStart() {
         super.onStart();
-        preferredListtheme = readPrefs();
+        PreferenceController.updatePreferredBackground(getActivity(),getActivity().findViewById(R.id.listWrapper));
 
         if(champs == null){
             champs = new ArrayList<>();
