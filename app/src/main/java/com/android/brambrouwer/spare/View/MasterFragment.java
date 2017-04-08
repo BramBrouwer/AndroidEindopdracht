@@ -13,6 +13,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import com.android.brambrouwer.spare.Controller.ListController;
 import com.android.brambrouwer.spare.Controller.ApiController;
@@ -38,7 +39,6 @@ public class MasterFragment extends Fragment {
     public OnMasterItemSelectedListener onMasterItemSelectedListener;
     public ProgressDialog pDialog;
 
-
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -63,6 +63,7 @@ public class MasterFragment extends Fragment {
             adapter = new ListController(this);
             list.setAdapter(adapter);
             setOnClickListener();
+            setLongClickListener();
             getAllChamps();
         }
     else{
@@ -70,6 +71,7 @@ public class MasterFragment extends Fragment {
             list = (ListView) getActivity().findViewById(R.id.listview);
             list.setAdapter(adapter);
             setOnClickListener();
+            setLongClickListener();
             adapter.notifyDataSetChanged();
         }
     }
@@ -143,15 +145,7 @@ public class MasterFragment extends Fragment {
         return retChamps;
     }
 
-    /*
-    Get current value of the theme pref & set backroung accordingly (should be done before filling the list
-     */
-    public String readPrefs() {
-        //Get current value of the shared preference with key pref_theme (key declared in settingsfragment)
-        SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(getActivity());
-        return sharedPref.getString(SettingsFragment.KEY_PREF_THEME, "");
-    }
-
+    //-----------------Listeners
     /*
      On list item click, pass champion object to host activity
       */
@@ -166,13 +160,44 @@ public class MasterFragment extends Fragment {
     }
 
     /*
-Interface used for commincation between master fragment and hostactivity
-*/
+    Interface used for commincation between master fragment and hostactivity
+    */
     public interface OnMasterItemSelectedListener {
         void onMasterItemSelected(Champion c);
     }
 
+    /*
+      On long click toggle the champ as a favourite
+     */
+    private void setLongClickListener(){
 
+        list.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
+            @Override
+            public boolean onItemLongClick(AdapterView<?> arg0, View arg1,
+                                           int pos, long id) {
+                String selectedChampName = champs.get(pos).name;
+                SharedPreferences settings = getActivity().getSharedPreferences("FavsFile", 0);
+                SharedPreferences.Editor editor = settings.edit();
+
+                if(!settings.contains(selectedChampName)){
+                    editor.putBoolean(selectedChampName, true);
+                    adapter.notifyDataSetChanged();
+                    showToast(selectedChampName + " favourited");
+                }else{
+                    editor.remove(selectedChampName);
+                    adapter.notifyDataSetChanged();
+                    showToast(selectedChampName + " unfavourited");
+
+                }
+
+                editor.apply();
+                return true;
+            }
+        });
+    }
+    //--------------- End listeners
+
+    //----------------Dialog
     /*
     Progress dialog shown while loading
      */
@@ -202,6 +227,15 @@ Interface used for commincation between master fragment and hostactivity
         dismissProgressDialog();
         super.onDestroy();
     }
+
+    public  void showToast(String message){
+        Context context = getActivity().getApplicationContext();
+        CharSequence text = message;
+        int duration = Toast.LENGTH_SHORT;
+        Toast toast = Toast.makeText(context, text, duration);
+        toast.show();
+    }
+    //----------------- End dialog
 
 
 
