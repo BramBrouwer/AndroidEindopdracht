@@ -21,16 +21,6 @@
         android:layout_marginTop="18dp" />
 
     <TextView
-        android:text="Phone Number"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="151dp"
-        android:id="@+id/phoneLabel"
-        android:textSize="12sp"
-        android:layout_below="@+id/textView"
-        android:layout_alignParentStart="true" />
-
-    <TextView
         android:text="Message"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -69,5 +59,15 @@
         android:layout_below="@+id/messageLabel"
         android:onClick="sendSMS"
         android:layout_centerHorizontal="true" />
+
+    <TextView
+        android:text="Phone Number"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="151dp"
+        android:id="@+id/phoneLabel"
+        android:textSize="12sp"
+        android:layout_below="@+id/textView"
+        android:layout_alignEnd="@+id/messageLabel" />
 
 </RelativeLayout>

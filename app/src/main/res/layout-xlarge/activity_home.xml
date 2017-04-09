@@ -15,6 +15,16 @@
     >
 
     <Button
+        android:text="Share"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/button"
+        android:elevation="0dp"
+        android:onClick="share"
+        style="@android:style/Widget.DeviceDefault.Button.Borderless"
+        android:textSize="24sp" />
+
+    <Button
         android:id="@+id/bAllChamps"
         style="?android:attr/borderlessButtonStyle"
         android:layout_width="wrap_content"
