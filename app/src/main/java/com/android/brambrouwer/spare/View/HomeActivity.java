@@ -1,9 +1,13 @@
 package com.android.brambrouwer.spare.View;
 
+import android.Manifest;
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
+import android.content.pm.PackageManager;
+import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.telephony.SmsManager;
 import android.view.View;
 import android.widget.Button;
 
@@ -12,7 +16,6 @@ import com.android.brambrouwer.spare.R;
 
 public class HomeActivity extends AppCompatActivity {
     public String screenType;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
@@ -55,6 +58,25 @@ public class HomeActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
+    public void share(View view){
+        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.M) {
 
+            if (checkSelfPermission(Manifest.permission.SEND_SMS)
+                    == PackageManager.PERMISSION_DENIED) {
+                ActivityCompat.requestPermissions(this,new String[]{Manifest.permission.SEND_SMS},1);
+            }else{
+                Intent intent = new Intent(HomeActivity.this, SMSActivity.class);
+                startActivity(intent);
+            }
+        }
+    }
 
+    public void onRequestPermissionsResult(int requestCode,String permissions[], int[] grantResults) {
+
+        if (grantResults.length > 0
+                && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+            Intent intent = new Intent(HomeActivity.this, SMSActivity.class);
+            startActivity(intent);
+        }
+    }
 }

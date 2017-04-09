@@ -14,8 +14,18 @@
     tools:context="com.android.brambrouwer.spare.View.HomeActivity">
 
     <Button
+        android:text="Share"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/button"
+        android:elevation="0dp"
+        android:onClick="share"
+        style="@android:style/Widget.DeviceDefault.Button.Borderless"
+        android:textSize="24sp" />
+
+    <Button
         android:id="@+id/bAllChamps"
-        style="?android:attr/borderlessButtonStyle"
+        style="@android:style/Widget.DeviceDefault.Button.Borderless"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="25dp"
@@ -25,7 +35,6 @@
         android:textSize="16sp"
         android:textStyle="bold" />
 
-
     <View
         android:layout_width="match_parent"
         android:layout_height="2dp"
@@ -33,9 +42,6 @@
         android:layout_marginTop="25dp"
         android:background="#000000"
         android:id="@+id/homeDivider"/>
-
-
-
 
     <Button
         android:id="@+id/bSettings"
